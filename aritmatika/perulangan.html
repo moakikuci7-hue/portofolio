@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Perulangan Interaktif (Pop-up)</title>
+</head>
+<body>
+
+    <h1>✨ Kalkulator Perulangan Interaktif</h1>
+
+    <div id="input-form">
+        <label for="startNum">Batas Awal:</label>
+        <input type="number" id="startNum" value="1" min="1"><br><br>
+
+        <label for="endNum">Batas Akhir:</label>
+        <input type="number" id="endNum" value="10" min="1"><br><br>
+
+        <h3>Pilih Perintah:</h3>
+        <table>
+            <tr>
+                <td><input type="radio" id="list" name="operation" value="list" checked></td>
+                <td><label for="list">Daftar Bilangan (Perulangan)</label></td>
+            </tr>
+            <tr>
+                <td><input type="radio" id="sum" name="operation" value="sum"></td>
+                <td><label for="sum">Total Penjumlahan (Summation)</label></td>
+            </tr>
+            <tr>
+                <td><input type="radio" id="percent" name="operation" value="percent"></td>
+                <td><label for="percent">Persentase Pencapaian</label></td>
+            </tr>
+        </table>
+        <br>
+        
+        <button onclick="prosesPerhitungan()">Tampilkan Hasil</button>
+    </div>
+
+    <script src="script.js"></script> 
+</body>
+</html>

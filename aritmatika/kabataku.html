@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+
+    <title>Kalkulator Sederhana (Pop-up)</title>
+
+    <style>
+
+        /* CSS Disederhanakan untuk Kerapian */
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            padding: 20px;
+
+            background-color: #f0f2f5;
+
+        }
+
+        form {
+
+            border: 1px solid #dcdcdc;
+
+            padding: 20px;
+
+            width: 350px;
+
+            margin: 30px auto;
+
+            background-color: #ffffff;
+
+            border-radius: 10px;
+
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+        h1 {
+
+            text-align: center;
+
+            color: #333;
+
+            margin-bottom: 25px;
+
+        }
+
+        input[type="text"] {
+
+            padding: 10px;
+
+            margin-bottom: 15px;
+
+            width: calc(100% - 22px);
+
+            border: 1px solid #bbb;
+
+            border-radius: 5px;
+
+            font-size: 1em;
+
+        }
+
+        .input-group label {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+            font-weight: bold;
+
+            color: #555;
+
+        }
+
+        .operasi-group {
+
+            margin: 15px 0;
+
+            padding: 15px;
+
+            border: 1px solid #e0e0e0;
+
+            background-color: #fcfcfc;
+
+            border-radius: 8px;
+
+        }
+
+        .operasi-group p {
+
+            margin-top: 0;
+
+            margin-bottom: 10px;
+
+            font-weight: bold;
+
+            color: #555;
+
+        }
+
+        .operasi-group label {
+
+            margin-right: 20px;
+
+            cursor: pointer;
+
+            font-size: 1.1em;
+
+            font-weight: normal;
+
+            color: #444;
+
+        }
+
+        input[type="radio"] {
+
+            margin-right: 5px;
+
+        }
+
+        input[type="button"], input[type="reset"] {
+
+            padding: 12px 20px;
+
+            border: none;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            font-size: 1em;
+
+            transition: background-color 0.3s ease;
+
+        }
+
+        input[value="Hitung Hasil"] {
+
+            background-color: #007bff;
+
+            color: white;
+
+            margin-right: 10px;
+
+        }
+
+        input[value="Hitung Hasil"]:hover {
+
+            background-color: #0056b3;
+
+        }
+
+        input[value="Bersihkan Input"] {
+
+            background-color: #6c757d;
+
+            color: white;
+
+        }
+
+        input[value="Bersihkan Input"]:hover {
+
+            background-color: #545b62;
+
+        }
+
+
+
+        /* Karena output sekarang menggunakan alert, tidak perlu styling #hasilDisplay */
+
+    </style>
+
+   
+
+    <script language="JavaScript">
+
+        function hitung() {
+
+            var bil1 = parseFloat(document.fform.bilangan1.value);
+
+            var bil2 = parseFloat(document.fform.bilangan2.value);
+
+            var operasi = document.querySelector('input[name="operasi"]:checked');
+
+            var hasil = 0;
+
+            var operasiTeks = "";
+
+            var simbolTampilan = "";
+
+            var pesanOutput = ""; // Variabel untuk menampung pesan pop-up
+
+
+
+            // --- Validasi Input Awal ---
+
+            if (isNaN(bil1) || isNaN(bil2)) {
+
+                alert("⚠️ Input bilangan tidak valid. Masukkan angka.");
+
+                return;
+
+            }
+
+            if (!operasi) {
+
+                alert("⚠️ Pilih salah satu operasi terlebih dahulu.");
+
+                return;
+
+            }
+
+
+
+            // --- Lakukan Operasi ---
+
+            switch (operasi.value) {
+
+                case '+':
+
+                    hasil = bil1 + bil2;
+
+                    operasiTeks = "Penjumlahan";
+
+                    simbolTampilan = "+";
+
+                    break;
+
+                case '-':
+
+                    hasil = bil1 - bil2;
+
+                    operasiTeks = "Pengurangan";
+
+                    simbolTampilan = "-";
+
+                    break;
+
+                case '*':
+
+                    hasil = bil1 * bil2;
+
+                    operasiTeks = "Perkalian";
+
+                    simbolTampilan = "X";
+
+                    break;
+
+                case '/':
+
+                    if (bil2 === 0) {
+
+                        alert("🚫 Tidak bisa membagi dengan nol!");
+
+                        return;
+
+                    }
+
+                    hasil = bil1 / bil2;
+
+                    operasiTeks = "Pembagian";
+
+                    simbolTampilan = ":";
+
+                    break;
+
+            }
+
+
+
+            // --- Tampilkan Hasil Menggunakan ALERT (Pop-up) ---
+
+            pesanOutput = `✅ Hasil ${operasiTeks}:\n\n ${bil1} ${simbolTampilan} ${bil2} = ${hasil.toFixed(2)}`;
+
+            alert(pesanOutput);
+
+        }
+
+
+
+        // Karena output menggunakan alert, fungsi reset cukup membersihkan form saja.
+
+        function resetKalkulator() {
+
+            document.fform.reset();
+
+        }
+
+
+
+        // Ganti perilaku tombol reset default saat halaman dimuat
+
+        window.onload = function() {
+
+            document.querySelector('input[type="reset"]').onclick = resetKalkulator;
+
+            // Tidak perlu inisialisasi tampilan hasilDisplay lagi
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+    <h1>Kalkulator Empat Operasi</h1>
+
+   
+
+    <form name="fform" onsubmit="return false;">
+
+       
+
+        <div class="input-group">
+
+            <label for="bilangan1">Bilangan Pertama:</label>
+
+            <input type="text" id="bilangan1" name="bilangan1">
+
+        </div>
+
+
+
+        <div class="input-group">
+
+            <label for="bilangan2">Bilangan Kedua:</label>
+
+            <input type="text" id="bilangan2" name="bilangan2">
+
+        </div>
+
+
+
+        <div class="operasi-group">
+
+            <p>Pilih Operasi:</p>
+
+           
+
+            <input type="radio" id="tambah" name="operasi" value="+">
+
+            <label for="tambah">+</label>
+
+
+
+            <input type="radio" id="kurang" name="operasi" value="-">
+
+            <label for="kurang">-</label>
+
+
+
+            <input type="radio" id="kali" name="operasi" value="*">
+
+            <label for="kali">X</label>
+
+
+
+            <input type="radio" id="bagi" name="operasi" value="/">
+
+            <label for="bagi">:</label>
+
+        </div>
+
+       
+
+        <p>
+
+            <input type="button" value="Hitung Hasil" onclick="hitung()">
+
+            <input type="reset" value="Bersihkan Input">
+
+        </p>
+
+    </form>
+
+   
+
+    </body>
+
+</html>

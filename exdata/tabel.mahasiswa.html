@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabel Data Mahasiswa</title>
+  <link rel="stylesheet" href="tabel.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Data Mahasiswa</h1>
+
+    <table border="1" id="tabelMahasiswa">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama</th>
+          <th>NIM</th>
+          <th>Program Studi</th>
+          <th>Semester</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Adithya Permana</td>
+          <td>230101001</td>
+          <td>Teknik Informatika</td>
+          <td>1</td>
+          <td>
+            <button class="editBtn">Edit</button>
+            <button class="hapusBtn">Hapus</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Budi Santoso</td>
+          <td>230101002</td>
+          <td>Sistem Informasi</td>
+          <td>1</td>
+          <td>
+            <button class="editBtn">Edit</button>
+            <button class="hapusBtn">Hapus</button>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Citra Lestari</td>
+          <td>230101003</td>
+          <td>Teknik Komputer</td>
+          <td>2</td>
+          <td>
+            <button class="editBtn">Edit</button>
+            <button class="hapusBtn">Hapus</button>
+          </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Dewi Anggraini</td>
+          <td>230101004</td>
+          <td>Teknik Informatika</td>
+          <td>3</td>
+          <td>
+            <button class="editBtn">Edit</button>
+            <button class="hapusBtn">Hapus</button>
+          </td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Erwin Saputra</td>
+          <td>230101005</td>
+          <td>Teknik Informatika</td>
+          <td>2</td>
+          <td>
+            <button class="editBtn">Edit</button>
+            <button class="hapusBtn">Hapus</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const tabel = document.getElementById('tabelMahasiswa').getElementsByTagName('tbody')[0];
+
+    // Event listener untuk tombol edit dan hapus
+    tabel.addEventListener('click', function(e) {
+      const target = e.target;
+      const row = target.closest('tr');
+
+      // Fungsi hapus baris
+      if (target.classList.contains('hapusBtn')) {
+        row.remove();
+        // Perbarui nomor urut
+        for (let i = 0; i < tabel.rows.length; i++) {
+          tabel.rows[i].cells[0].textContent = i + 1;
+        }
+      }
+
+      // Fungsi edit baris
+      if (target.classList.contains('editBtn')) {
+        const nama = prompt('Masukkan nama baru:', row.cells[1].textContent);
+        const nim = prompt('Masukkan NIM baru:', row.cells[2].textContent);
+        const prodi = prompt('Masukkan Program Studi baru:', row.cells[3].textContent);
+        const semester = prompt('Masukkan Semester baru:', row.cells[4].textContent);
+
+        if (nama && nim && prodi && semester) {
+          row.cells[1].textContent = nama;
+          row.cells[2].textContent = nim;
+          row.cells[3].textContent = prodi;
+          row.cells[4].textContent = semester;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

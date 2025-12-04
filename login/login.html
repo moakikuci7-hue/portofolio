@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webmail Login</title>
+    <link rel="stylesheet" href="">
+</head>
+<body> 
+
+    <div class="login-container">
+        <h1 class="title">Webmail Login</h1>
+
+        <div class="sign-in-section">
+            <h2>Sign in</h2>
+
+            <form onsubmit="return false;">
+                <div class="form-group">
+                    <label for="emailInput">Email</label>
+                    <a href="#" class="change-link">Change</a>
+                    <input type="text" id="emailInput" placeholder="email@example.com" value="fauzan">
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordInput">Your password*</label>
+                    <input type="password" id="passwordInput" placeholder="********" value="123">
+                    <a href="#" class="forgot-password-link">Forgot your password?</a>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="staySignedIn">
+                    <label for="staySignedIn">Stay signed in</label>
+                </div>
+
+                <button type="button" onclick="handleLogin()">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body> 
+</html>
